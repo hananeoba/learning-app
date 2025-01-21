@@ -19,7 +19,7 @@ void main() {
 
   test('should return localUser from the  auth repo ', () async {
     when(() => authRepo.signIn(
-            email: any(named: 'email'), password: any(named: 'password')))
+            email: any(named: 'email'), password: any(named: 'password'),),)
         .thenAnswer((_) async => const Right(tUser));
     final result = await signIn(const SignInParams.empty());
     expect(result, const Right<dynamic, LocalUser>(tUser));

@@ -9,9 +9,14 @@ environment:
 dependencies:
   bloc: ^8.1.4
   chewie: ^1.8.5
+  cloud_firestore: ^4.17.5
   dartz: ^0.10.1
   equatable: ^2.0.7
   file_picker: ^8.1.5
+  firebase_auth: ^4.16.0
+  firebase_core: ^2.32.0
+  firebase_storage: ^11.6.5
+  firebase_ui_auth: ^1.7.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6

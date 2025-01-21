@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project2/core/extensions/content_extention.dart';
 import 'package:project2/core/res/colors.dart';
 import 'package:project2/core/res/fonts.dart';
 import 'package:project2/src/onboarding/domain/entities/page_content.dart';
 import 'package:project2/src/onboarding/presentation/cubit/onboarding_cubit.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OnboardingBody extends StatelessWidget {
   const OnboardingBody({required this.pageContent, super.key});

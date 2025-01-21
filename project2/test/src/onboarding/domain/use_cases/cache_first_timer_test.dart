@@ -34,7 +34,9 @@ void main() {
     expect(
         result,
         Left<Failure, dynamic>(
-            ServerFailure(message: 'unknown error', statusCode: 500)));
+        ServerFailure(message: 'unknown error', statusCode: 500),
+      ),
+    );
     verify(() => repo.cacheFirstTimer()).called(1);
     verifyNoMoreInteractions(repo);
   });

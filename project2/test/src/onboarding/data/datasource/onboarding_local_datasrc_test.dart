@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:project2/core/errors/exceptions.dart';
 import 'package:project2/src/onboarding/data/datasource/onboarding_local_datasrc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:project2/core/errors/exceptions.dart';
 
 class MockSharedPreferences extends Mock implements SharedPreferences {}
 

@@ -62,14 +62,14 @@ void main() {
     const tEmail = 'test@example.com';
     const tPassword = 'password';
     const tUser = LocalUserModel(
-        uid: '1', email: tEmail, fullName: 'Test User', points: 0);
+        uid: '1', email: tEmail, fullName: 'Test User', points: 0,);
 
     test('should return user when the call to remote data source is successful',
         () async {
       // arrange
       when(() => datasrc.signIn(
           email: any(named: 'email'),
-          password: any(named: 'password'))).thenAnswer((_) async => tUser);
+          password: any(named: 'password'),),).thenAnswer((_) async => tUser);
       // act
       final result =
           await authRepoImpl.signIn(email: tEmail, password: tPassword);
@@ -85,9 +85,9 @@ void main() {
         () async {
       // arrange
       when(() => datasrc.signIn(
-              email: any(named: 'email'), password: any(named: 'password')))
+              email: any(named: 'email'), password: any(named: 'password'),),)
           .thenThrow(
-              const ServerException(message: 'Error', statusCode: '500'));
+              const ServerException(message: 'Error', statusCode: '500'),);
       // act
       final result =
           await authRepoImpl.signIn(email: tEmail, password: tPassword);
@@ -95,7 +95,7 @@ void main() {
       expect(
           result,
           Left<Failure, LocalUser>(
-              ServerFailure(message: 'Error', statusCode: '500')));
+              ServerFailure(message: 'Error', statusCode: '500'),),);
       verify(() => datasrc.signIn(email: tEmail, password: tPassword))
           .called(1);
       verifyNoMoreInteractions(datasrc);
@@ -115,14 +115,14 @@ void main() {
       when(() => datasrc.signUp(
           email: any(named: 'email'),
           password: any(named: 'password'),
-          fullName: any(named: 'fullName'))).thenAnswer((_) async => tUser);
+          fullName: any(named: 'fullName'),),).thenAnswer((_) async => tUser);
       // act
       final result = await authRepoImpl.signUp(
-          email: tEmail, password: tPassword, fullName: tFullName);
+          email: tEmail, password: tPassword, fullName: tFullName,);
       // assert
       expect(result, const Right(tUser));
       verify(() => datasrc.signUp(
-          email: tEmail, password: tPassword, fullName: tFullName)).called(1);
+          email: tEmail, password: tPassword, fullName: tFullName,),).called(1);
       verifyNoMoreInteractions(datasrc);
     });
 
@@ -133,19 +133,19 @@ void main() {
       when(() => datasrc.signUp(
               email: any(named: 'email'),
               password: any(named: 'password'),
-              fullName: any(named: 'fullName')))
+              fullName: any(named: 'fullName'),),)
           .thenThrow(
-              const ServerException(message: 'Error', statusCode: '500'));
+              const ServerException(message: 'Error', statusCode: '500'),);
       // act
       final result = await authRepoImpl.signUp(
-          email: tEmail, password: tPassword, fullName: tFullName);
+          email: tEmail, password: tPassword, fullName: tFullName,);
       // assert
       expect(
           result,
           Left<Failure, LocalUser>(
-              ServerFailure(message: 'Error', statusCode: '500')));
+              ServerFailure(message: 'Error', statusCode: '500'),),);
       verify(() => datasrc.signUp(
-          email: tEmail, password: tPassword, fullName: tFullName)).called(1);
+          email: tEmail, password: tPassword, fullName: tFullName,),).called(1);
       verifyNoMoreInteractions(datasrc);
     });
   });
@@ -159,10 +159,10 @@ void main() {
       // arrange
       when(() => datasrc.updateUser(
           action: any(named: 'action'),
-          data: any(named: 'data'))).thenAnswer((_) async => Future.value());
+          data: any(named: 'data'),),).thenAnswer((_) async => Future.value());
       // act
       final result = await authRepoImpl.updateUserData(
-          action: tAction, userData: tUserData);
+          action: tAction, userData: tUserData,);
       // assert
       expect(result, const Right(null));
       verify(() => datasrc.updateUser(action: tAction, data: tUserData))
@@ -175,17 +175,19 @@ void main() {
         () async {
       // arrange
       when(() => datasrc.updateUser(
-              action: any(named: 'action'), data: any(named: 'data')))
+              action: any(named: 'action'), data: any(named: 'data'),),)
           .thenThrow(
-              const ServerException(message: 'Error', statusCode: '500'));
+              const ServerException(message: 'Error', statusCode: '500'),);
       // act
       final result = await authRepoImpl.updateUserData(
-          action: tAction, userData: tUserData);
+          action: tAction, userData: tUserData,);
       // assert
       expect(
           result,
           Left<Failure, void>(
-              ServerFailure(message: 'Error', statusCode: '500')));
+          ServerFailure(message: 'Error', statusCode: '500'),
+        ),
+      );
       verify(() => datasrc.updateUser(action: tAction, data: tUserData))
           .called(1);
       verifyNoMoreInteractions(datasrc);

@@ -57,7 +57,7 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   ResultFuture<void> updateUserData(
-      {required updateUserAction action, dynamic userData}) async {
+      {required updateUserAction action, dynamic userData,}) async {
     try {
       final user = await _remoteDataSrc.updateUser(
         action: action,

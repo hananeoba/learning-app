@@ -18,7 +18,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     default:
       return _pageBuilder((_) => const PageUnderConstruction(),
-          settings: settings);
+          settings: settings,);
   }
 }
 
@@ -33,5 +33,5 @@ PageRouteBuilder<dynamic> _pageBuilder(
           FadeTransition(
             opacity: animation,
             child: child,
-          ));
+          ),);
 }
