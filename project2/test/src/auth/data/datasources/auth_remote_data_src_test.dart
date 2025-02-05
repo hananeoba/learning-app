@@ -11,11 +11,13 @@ class MockFirebaseAuth extends Mock implements FirebaseAuth {}
 
 class MockFirebaseFireStore extends Mock implements FirebaseFirestore {}
 
+class MockUserCredential extends Mock implements UserCredential {}
+
 void main() {
   late FirebaseAuth authClient;
   late FirebaseFirestore cloudStoreClient;
   late FirebaseStorage dbClient;
-
+  late UserCredential userCredential;
   late AuthRemoteDataSrc dataSrc;
 
   setUp(() {
@@ -27,8 +29,9 @@ void main() {
       cloudStoreClient: cloudStoreClient,
       datebase: dbClient,
     );
+    userCredential = MockUserCredential();
   });
-  group('SignµIn', () {
+  group('SignIn', () {
     test('should complete successfully when call to server is successful ',
         () async {
       // arrange
@@ -37,14 +40,14 @@ void main() {
           email: any(named: 'email'),
           password: any(named: 'password'),
         ),
-      ).thenAnswer((_) async => Future.value());
+      ).thenAnswer((_) async => userCredential);
       // act
       final result = await dataSrc.signIn(
-        email: any(named: 'email'),
-        password: any(named: 'password'),
+        email: 'email',
+        password: 'password',
       );
       // assert
-      expect(result, true);
+      expect(result.email, equals('email'));
     });
     test('', () {});
   });
